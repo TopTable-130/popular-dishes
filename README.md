@@ -1,13 +1,13 @@
-# Project Name
-TKOut, popular-dishes service module
+# TopTable
+Popular-dishes service module
 
 Full stack module for displaying popular dishes of the restaurant
 
 ## Related Projects
 
-  - Billy: https://github.com/TKOut-HRSF130/photos-carousel-service
-  - Jonny: https://github.com/TKOut-HRSF130/bookings-service
-  - Mataeux https://github.com/TKOut-HRSF130/reviews-service
+  - https://github.com/TopTable-130/Reviews
+  - https://github.com/TopTable-130/photos-carousel-service
+  - https://github.com/TopTable-130/Calendar
 
 ## Table of Contents
 
@@ -17,13 +17,96 @@ Full stack module for displaying popular dishes of the restaurant
 
 ## Usage
 
-> Some usage instructions
+## Server API
+
+### Get all dishes from a restaurant
+  * GET `/api/restaurants/:id/dishes`
+
+**Path Parameters:**
+  * `id` restaurant id
+
+**Success Status Code:** `200`
+
+**Returns:** JSON
+
+```json
+  [
+    {
+      "id": "Number",
+      "name": "String",
+      "description": "String",
+      "reviews": [
+        {
+          "id": "Number",
+          "user": "String",
+          "date": "Date",
+          "restaurant_rating": "Number",
+          "review_text": "String"
+        },
+        ...
+      ],
+      "price": "Number"
+    },
+    ...
+   ]
+```
+
+### Add a dish to a restaurant
+  * POST `/api/restaurants/:id/dishes`
+
+**Path Parameters:**
+  * `id` restaurant id
+
+**Success Status Code:** `201`
+
+**Request Body**: Expects JSON with the following keys.
+
+```json
+    {
+      "name": "String",
+      "restaurant_id": "Number",
+      "description": "String",
+      "price": "Number"
+    }
+```
+
+
+### Update restaurant info
+  * PATCH `/api/restaurant/:id/dishes/:dishid`
+
+**Path Parameters:**
+  * `id` restaurant id
+  * `dishid` dish id
+
+
+**Success Status Code:** `204`
+
+**Request Body**: Expects JSON with any of the following keys (include only keys to be updated)
+
+```json
+     {
+      "name": "String",
+      "restaurant_id": "Number",
+      "description": "String",
+      "price": "Number"
+     }
+```
+
+### Delete restaurant
+  * DELETE `/api/restaurant/:id/dishes/:dishid`
+
+**Path Parameters:**
+  * `id` restaurant id
+  * `dishid` dish id
+
+**Success Status Code:** `204`
+
 
 ## Requirements
 
 An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 
-- Node 6.13.0
+- Node 10.22
 - etc
 
 ## Development
@@ -33,6 +116,5 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 From within the root directory:
 
 ```sh
-npm install -g webpack
 npm install
 ```
