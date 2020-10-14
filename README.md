@@ -19,7 +19,7 @@ Full stack module for displaying popular dishes of the restaurant
 
 ## Server API
 
-### Get all dishes from a restaurant
+### Get list of all dishes from a restaurant
   * GET `/api/restaurants/:id/dishes`
 
 **Path Parameters:**
@@ -42,12 +42,10 @@ Full stack module for displaying popular dishes of the restaurant
           "date": "Date",
           "restaurant_rating": "Number",
           "review_text": "String"
-        },
-        ...
+        }
       ],
       "price": "Number"
-    },
-    ...
+    }
    ]
 ```
 
