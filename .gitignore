@@ -25,3 +25,5 @@ bundle.js
 build/
 avatars/
 dishesImg/
+
+.csv
