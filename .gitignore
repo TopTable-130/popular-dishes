@@ -25,3 +25,7 @@ bundle.js
 build/
 avatars/
 dishesImg/
+
+*.csv
+
+seedCommands.text
