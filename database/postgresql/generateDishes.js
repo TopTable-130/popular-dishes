@@ -14,11 +14,11 @@ const createDishes = (numRestaurants) => {
   const writer = csvWriter();
   writer.pipe(fs.createWriteStream('./csv/dishes.csv'));
   let dishCount = 0;
-  for (let i = 0; i < numRestaurants; i++) {
-    const randomNum = Math.floor(Math.random() * 5);
+  for (let i = 1; i < numRestaurants; i++) {
     if (i % (Math.floor(numRestaurants / 10)) === 0) {
       console.log(`${(i / numRestaurants) * 100}% of dishes complete`);
     }
+    const randomNum = Math.floor(Math.random() * 5);
     for (let j = 0; j < randomNum; j++) {
       writer.write({
         restaurant_id: i,
