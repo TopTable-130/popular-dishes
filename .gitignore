@@ -29,3 +29,5 @@ dishesImg/
 *.csv
 
 seedCommands.text
+
+config.js

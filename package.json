@@ -11,7 +11,7 @@
     "test": "jest --verbose",
     "test:coverage": "jest --verbose --coverage"
   },
-  "author": "Anna Kazannik",
+  "author": "Jorgen Carlsen",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
@@ -21,6 +21,7 @@
     "jquery": "^3.2.1",
     "mysql": "^2.14.1",
     "nodemon": "^2.0.4",
+    "pg": "^8.4.1",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
     "react-modal": "^3.11.2",
