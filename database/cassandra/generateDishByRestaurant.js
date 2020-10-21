@@ -21,6 +21,7 @@ const createDishes = (numRestaurants) => {
     const randomNum = Math.floor(Math.random() * 5);
     for (let j = 0; j < randomNum; j++) {
       writer.write({
+        restaurant_id: i,
         restaurant_name: faker.name.lastName(),
         dish_name: randomCuisine(),
         dish_id: dishCount,

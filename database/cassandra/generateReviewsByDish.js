@@ -2,7 +2,7 @@ const fs = require('fs');
 const csvWriter = require('csv-write-stream');
 const faker = require('faker');
 
-const numberOfDishes = 9996389;
+const numberOfDishes = 9997160;
 
 const createReviews = (numDishes) => {
   let reviewCount = 0;
@@ -20,6 +20,7 @@ const createReviews = (numDishes) => {
         const randomNum = Math.floor(Math.random() * 5);
         for (let j = 0; j < randomNum; j++) {
           writer.write({
+            dish_id: i,
             dish_name: faker.name.lastName(),
             review_id: reviewCount,
             restaurant_name: faker.name.lastName(),
@@ -40,6 +41,7 @@ const createReviews = (numDishes) => {
         const randomNum = Math.floor(Math.random() * 5);
         for (let j = 0; j < randomNum; j++) {
           continueWriting = writer.write({
+            dish_id: i,
             dish_name: faker.name.lastName(),
             review_id: reviewCount,
             restaurant_name: faker.name.lastName(),

@@ -31,14 +31,16 @@ CREATE TABLE IF NOT EXISTS restaurants (
 );
 
 CREATE TABLE IF NOT EXISTS dish_by_restaurant (
+  restaurant_id int,
   restaurant_name text,
   dish_name text,
   dish_id int,
   description text,
-  PRIMARY KEY (restaurant_name, dish_id)
+  PRIMARY KEY (restaurant_id, restaurant_name, dish_id)
 );
 
 CREATE TABLE IF NOT EXISTS reviews_by_dish (
+  dish_id int,
   dish_name text,
   review_id int,
   restaurant_name text,
@@ -46,13 +48,14 @@ CREATE TABLE IF NOT EXISTS reviews_by_dish (
   dined_on text,
   rating smallint,
   review_text text,
-  PRIMARY KEY (dish_name, review_id, dined_on)
-);
+  PRIMARY KEY (dish_id, dined_on)
+)
+WITH CLUSTERING ORDER BY (dined_on DESC);
 
 COPY users (id, username, first_name, last_name, phone, email) FROM '/Users/jorgencarlsen/Hack-Reactor/sdc/popular-dishes-service/database/cassandra/csv/users.csv' with header=true and delimiter =',';
 
 COPY restaurants (id, name, cuisine, street, city, state, zip_code, phone) FROM '/Users/jorgencarlsen/Hack-Reactor/sdc/popular-dishes-service/database/cassandra/csv/restaurants.csv' with header=true and delimiter =',';
 
-COPY dish_by_restaurant (restaurant_name, dish_name, dish_id, description) FROM '/Users/jorgencarlsen/Hack-Reactor/sdc/popular-dishes-service/database/cassandra/csv/dishes.csv' with header=true and delimiter =',';
+COPY dish_by_restaurant (restaurant_id, restaurant_name, dish_name, dish_id, description) FROM '/Users/jorgencarlsen/Hack-Reactor/sdc/popular-dishes-service/database/cassandra/csv/dishes.csv' with header=true and delimiter =',';
 
-COPY reviews_by_dish (dish_name, review_id, restaurant_name, username, dined_on, rating, review_text) FROM '/Users/jorgencarlsen/Hack-Reactor/sdc/popular-dishes-service/database/cassandra/csv/reviews.csv' with header=true and delimiter =',';
+COPY reviews_by_dish (dish_id, dish_name, review_id, restaurant_name, username, dined_on, rating, review_text) FROM '/Users/jorgencarlsen/Hack-Reactor/sdc/popular-dishes-service/database/cassandra/csv/reviews.csv' with header=true and delimiter =',';
