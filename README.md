@@ -79,14 +79,11 @@ Full stack module for displaying popular dishes of the restaurant
 
 **Success Status Code:** `204`
 
-**Request Body**: Expects JSON with any of the following keys (include only keys to be updated)
-
+**Request Body**: Expects JSON with the following keys:
 ```json
      {
       "name": "String",
-      "restaurant_id": "Number",
       "description": "String",
-      "price": "Number"
      }
 ```
 
