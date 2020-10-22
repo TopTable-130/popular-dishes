@@ -9,9 +9,6 @@ router.post('/:id/dishes', queries.addDishToRestaurant);
 
 router.patch('/:id/dishes/:dishId', queries.updateDish);
 
-router.delete('/:id/dishes/:dishId', (req, res) => {
-  // Todo: delete a dish
-  res.status(204).end();
-});
+router.delete('/:id/dishes/:dishId', queries.deleteDish);
 
 module.exports = router;

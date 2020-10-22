@@ -44,7 +44,20 @@ const updateDish = (req, res) => {
   pool
     .query(query, values)
     .then((data) => {
-      res.status(201).send(data);
+      res.status(204).send(data);
+    })
+    .catch((error) => {
+      res.status(400).send(error);
+    });
+};
+
+const deleteDish = (req, res) => {
+  const query = 'DELETE FROM dishes WHERE id=$1;';
+  const values = [req.params.dishId];
+  pool
+    .query(query, values)
+    .then((data) => {
+      res.status(204).send(data);
     })
     .catch((error) => {
       res.status(400).send(error);
@@ -54,3 +67,4 @@ const updateDish = (req, res) => {
 module.exports.getAllDishesForRestaurant = getAllDishesForRestaurant;
 module.exports.addDishToRestaurant = addDishToRestaurant;
 module.exports.updateDish = updateDish;
+module.exports.deleteDish = deleteDish;
