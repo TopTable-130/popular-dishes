@@ -44,7 +44,6 @@ Full stack module for displaying popular dishes of the restaurant
           "review_text": "String"
         }
       ],
-      "price": "Number"
     }
    ]
 ```
@@ -64,7 +63,6 @@ Full stack module for displaying popular dishes of the restaurant
       "name": "String",
       "restaurant_id": "Number",
       "description": "String",
-      "price": "Number"
     }
 ```
 
