@@ -37,5 +37,20 @@ const addDishToRestaurant = (req, res) => {
     });
 };
 
+const updateDish = (req, res) => {
+  const query = 'UPDATE dishes SET name=$2, description=$3 WHERE id=$1;';
+  const { name, description } = req.body;
+  const values = [req.params.dishId, name, description];
+  pool
+    .query(query, values)
+    .then((data) => {
+      res.status(201).send(data);
+    })
+    .catch((error) => {
+      res.status(400).send(error);
+    });
+};
+
 module.exports.getAllDishesForRestaurant = getAllDishesForRestaurant;
 module.exports.addDishToRestaurant = addDishToRestaurant;
+module.exports.updateDish = updateDish;

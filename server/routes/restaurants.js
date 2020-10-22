@@ -7,10 +7,7 @@ router.get('/:id/dishes', queries.getAllDishesForRestaurant);
 
 router.post('/:id/dishes', queries.addDishToRestaurant);
 
-router.patch('/:id/dishes/:dishId', (req, res) => {
-  // Todo: update a dish
-  res.status(204).end();
-});
+router.patch('/:id/dishes/:dishId', queries.updateDish);
 
 router.delete('/:id/dishes/:dishId', (req, res) => {
   // Todo: delete a dish
