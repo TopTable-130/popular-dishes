@@ -9,13 +9,34 @@ const pool = new Pool({
 });
 
 // Get all dishes for a restaurant
-const getAllDishesForRestaurant = (req, res) => {
+// const getAllDishesForRestaurant = (req, res) => {
+//   const query = 'SELECT * FROM dishes WHERE restaurant_id=$1';
+//   const values = [req.params.id];
+//   pool
+//     .query(query, values)
+//     .then(({ rows }) => {
+//       res.status(200).send(rows);
+//     })
+//     .catch((error) => {
+//       res.status(400).send(error);
+//     });
+// };
+
+const getAllDishesForRestaurant = async (req, res) => {
   const query = 'SELECT * FROM dishes WHERE restaurant_id=$1';
   const values = [req.params.id];
-  pool
-    .query(query, values)
-    .then(({ rows }) => {
-      res.status(200).send(rows);
+  const { rows } = await pool.query(query, values);
+  Promise.all(rows.map(async (row) => {
+    const reviewQuery = 'SELECT r.id, r.dish_id, u.username, r.review_text, r.dined_on, r.rating AS stars FROM reviews r, users u WHERE r.dish_id=$1 AND r.user_id = u.id';
+    const { id } = row;
+    const data = await pool.query(reviewQuery, [id]);
+    row.reviews = data.rows;
+    return new Promise((resolve) => {
+      resolve(row);
+    });
+  }))
+    .then((newRows) => {
+      res.status(200).send(newRows);
     })
     .catch((error) => {
       res.status(400).send(error);
