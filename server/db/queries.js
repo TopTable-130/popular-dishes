@@ -8,12 +8,12 @@ const pool = new Pool({
   port: 5432,
 });
 
-// Get all dishes for a restaurant
+//Get all dishes for a restaurant
 // const getAllDishesForRestaurant = (req, res) => {
-//   const query = 'SELECT * FROM dishes WHERE restaurant_id=$1';
-//   const values = [req.params.id];
+//   const query = `SELECT * FROM dishes WHERE restaurant_id=${req.params.id} LIMIT 10`;
+//   //const values = [req.params.id];
 //   pool
-//     .query(query, values)
+//     .query(query)
 //     .then(({ rows }) => {
 //       res.status(200).send(rows);
 //     })
