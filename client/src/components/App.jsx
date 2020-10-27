@@ -74,7 +74,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      info: { dishes: {}, users: {} },
+      dishes: [],
       popup: false,
       popupDish: null,
       x: 0,
@@ -93,10 +93,10 @@ class App extends React.Component {
   }
 
   getAllDishes(restrId) {
-    axios.get(`/api/dishes/restaurant/${restrId}`)
+    axios.get(`/api/restaurants/${restrId}/dishes`)
       .then((result) => {
         this.setState({
-          info: result.data,
+          dishes: result.data,
         });
       });
   }
@@ -133,13 +133,13 @@ class App extends React.Component {
   }
 
   render() {
-    const { dishes } = this.state.info;
+    const { dishes } = this.state;
     const { popup } = this.state;
     const { x } = this.state;
     const numOfDishes = Object.keys(dishes).length;
     return (
       <div>
-        <div>{popup ? <Popup info={this.state.info} dishToRender={this.state.popupDish} closePopup={this.handlePopupClose} onContentChange={this.handlePopupContent} /> : null}</div>
+        <div>{popup ? <Popup dishes={dishes} dishToRender={this.state.popupDish} closePopup={this.handlePopupClose} onContentChange={this.handlePopupContent} /> : null}</div>
         <Wrapper>
           <Title>Popular dishes</Title>
           <DishesContainer>

@@ -86,7 +86,7 @@ const ReadMoreLink = styled.a`
   }
 `;
 
-const Review = ({ review, user }) => {
+const Review = ({ review }) => {
   const [readMore, setReadMore] = useState(false);
   const linkName = readMore ? '- Read less' : '+ Read more';
   const dateFormatter = (date) => {
@@ -96,14 +96,14 @@ const Review = ({ review, user }) => {
   return (
     <Wrapper>
       <ReviewHeader>
-        <Thumbnail>
+        {/* <Thumbnail>
           <Image src={user.avatar} alt={user.name} />
-        </Thumbnail>
+        </Thumbnail> */}
         <ReviewInfo>
-          <UserName>
+          {/* <UserName>
             <div>{user.name}</div>
             <div>{review.user_status ? <Status>vip</Status> : null}</div>
-          </UserName>
+          </UserName> */}
           <Rating>
             <Stars rating={review.stars} />
             <DateComponent>{`${review.stars} · Dined on ${dateFormatter(review.dined_on)}`}</DateComponent>

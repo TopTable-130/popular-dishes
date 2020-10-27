@@ -22,7 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-app.get('/api/restaurants', async (req, res) => {
+app.get('/api/restaurants/:id/dishes', async (req, res) => {
   const query = 'SELECT * FROM dishes WHERE restaurant_id=$1';
   const values = [req.params.id];
   const { rows } = await pool.query(query, values);

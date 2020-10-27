@@ -105,8 +105,9 @@ const DishBtn = styled.button`
 `;
 
 const Popup = ({
-  info, closePopup, dishToRender, onContentChange,
+  dishes, closePopup, dishToRender, onContentChange,
 }) => {
+  console.log('dishToRender: ', dishToRender);
   const [modalIsOpen, setIsOpen] = React.useState(true);
   const closeModal = () => {
     setIsOpen(false);
@@ -119,14 +120,14 @@ const Popup = ({
     closeModal();
     closePopup();
   };
-
-  const dishName = (id) => info.dishes[`${id}`].name;
+  const dishObj = dishes.filter((dish) => dish.id === dishToRender)[0];
+  const dishName = dishObj.name;
   const UcFirstLetter = (str) => str.charAt(0).toUpperCase() + str.slice(1);
-  const user = (id) => info.users[`${id}`];
-  const reviewsNum = Object.keys(info.dishes[`${dishToRender}`].reviews).length;
-  const ingredients = info.dishes[`${dishToRender}`].ingredients.split(', ').slice(-4).join(', ');
-  const otherDishesIds = Object.keys(info.dishes).filter((id) => id !== `${dishToRender}`);
-  const reviews = Object.values(info.dishes[`${dishToRender}`].reviews);
+  // const user = (id) => info.users[`${id}`];
+  const reviewsNum = dishObj.reviews.length;
+  // const ingredients = dishes[`${dishToRender}`].ingredients.split(', ').slice(-4).join(', ');
+  const otherDishesIds = Object.keys(dishes).filter((id) => id !== `${dishToRender}`);
+  const { reviews } = dishObj;
 
   useEffect(() => {
     document.addEventListener('mousedown', handleOutsideClick);
@@ -168,22 +169,22 @@ const Popup = ({
       <div ref={node} onClick={handleOutsideClick}>
         <CloseBtn onClick={closePopup}>╳</CloseBtn>
         <div>
-          <DishName>{dishName(dishToRender)}</DishName>
+          <DishName>{dishName}</DishName>
           <Mentions>
             <BadgeIcon>{icon.badge}</BadgeIcon>
             {`${reviewsNum} reviews mention this dish`}
           </Mentions>
-          <Ingredients>{ingredients}</Ingredients>
+          {/* <Ingredients>{ingredients}</Ingredients> */}
           <Reviews>
-            {reviews.map((review) => <Review key={review.id} review={review} user={user(review.user_id)} />)}
+            {reviews.map((review) => <Review key={review.id} review={review} />)}
           </Reviews>
-          <OtherDishes>
+          {/* <OtherDishes>
             <OtherDishesHeader>Other Popular Dishes</OtherDishesHeader>
             {otherDishesIds.map((id) => <DishBtn onClick={() => onContentChange(id)} key={id}>{UcFirstLetter(dishName(id).split(' ').slice(-1).join(''))}</DishBtn>)}
-          </OtherDishes>
+          </OtherDishes> */}
         </div>
       </div>
-    </Modal>
+    </Modal >
   );
 };
 
