@@ -29,3 +29,10 @@ dishesImg/
 *.csv
 
 seedCommands.text
+
+config.js
+
+# Stress Testing
+newrelic.js
+newrelic_agent.log
+k6script.js

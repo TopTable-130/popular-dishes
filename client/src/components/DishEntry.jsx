@@ -67,12 +67,12 @@ const Reviews = styled.p`
 const DishEntry = ({ dish, handleDishClick }) => (
   <div>
     <Wrapper onClick={() => handleDishClick(dish.id)}>
-      <Photo>
+      {/* <Photo>
         <Image src={dish.picture} alt={dish.name} />
-      </Photo>
+      </Photo> */}
       <DishInfoContainer>
         <DishName>{dish.name}</DishName>
-        <DishIngredients>{dish.ingredients.split(', ').slice(-4).join(', ')}</DishIngredients>
+        {/* <DishIngredients>{dish.ingredients.split(', ').slice(-4).join(', ')}</DishIngredients> */}
         <Reviews>{`${Object.keys(dish.reviews).length} reviews`}</Reviews>
       </DishInfoContainer>
     </Wrapper>
